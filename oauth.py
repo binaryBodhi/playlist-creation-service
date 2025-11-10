@@ -69,7 +69,7 @@ def _refresh_token(tok: dict) -> dict:
     if not tok or "refresh_token" not in tok:
         return _authorize_with_pkce()
     data = {
-        "client_id": SPOTIFY_CLIENT_ID,
+        "client_id": _get_spotify_client_id(),
         "grant_type": "refresh_token",
         "refresh_token": tok["refresh_token"],
     }
