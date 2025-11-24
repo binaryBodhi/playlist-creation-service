@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug: playlist-creation-service (delete-all)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "playlist-creation-service",
+      "args": ["--delete-all", "English"],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ]
+}

@@ -1,3 +1,6 @@
-from .main import main  # relative import for library use
+from .apis.api import split_playlist_by_year, delete_year_playlists
 
-__all__ = ["main"]
+__all__ = [
+    "split_playlist_by_year",
+    "delete_year_playlists",
+]
