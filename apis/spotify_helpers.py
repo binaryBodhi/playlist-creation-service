@@ -95,3 +95,19 @@ def _add_items_in_batches(token: str, playlist_id: str, uris: List[str]) -> None
     for i in range(0, len(uris), ADD_BATCH_LIMIT):
         chunk = uris[i : i + ADD_BATCH_LIMIT]
         _api_request("POST", f"/playlists/{playlist_id}/tracks", token, json_body={"uris": chunk})
+
+
+def _playlist_is_owned_by_user(pl: dict, user_id: str) -> bool:
+    return (pl.get("owner") or {}).get("id") == user_id
+
+def _playlist_has_tag(pl: dict, tag: str) -> bool:
+    desc = pl.get("description") or ""
+    return tag in desc
+
+def _unfollow_playlist(token: str, playlist_id: str) -> None:
+    # DELETE /v1/playlists/{playlist_id}/followers
+    _api_request("DELETE", f"/playlists/{playlist_id}/followers", token)
+
+def _iter_my_playlists(token: str):
+    # Iterate all of *your* playlists
+    yield from _iter_pages(token, "/me/playlists", params={"limit": 50})

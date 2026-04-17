@@ -1,0 +1,54 @@
+[
+    {
+        "name": "spotify_split_playlist",
+        "description": "Create/reuse year-playlists from a source playlist and add tracks by album release year.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "source_playlist": {
+                    "type": "string",
+                    "description": "Spotify playlist URL or playlist ID"
+                },
+                "make_public": {
+                    "type": "boolean",
+                    "description": "Whether to create resulting playlists as public (default false)",
+                    "default": false
+                }
+            },
+            "required": ["source_playlist"]
+        }
+    },
+    {
+        "name": "spotify_delete_year_playlists",
+        "description": "Find and (optionally) unfollow/delete year playlists created from a source name.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "source_name": {
+                    "type": "string",
+                    "description": "The source playlist name (the prefix 'From <SourceName>:' is used)."
+                },
+                "year": {
+                    "type": ["string", "null"],
+                    "description": "Optional year to delete (e.g. '2017'). If omitted, deletes all years for the source."
+                },
+                "dry_run": {
+                    "type": "boolean",
+                    "description": "If true, only preview deletions.",
+                    "default": true
+                },
+                "force": {
+                    "type": "boolean",
+                    "description": "If true, skip interactive confirmation (script will perform deletions).",
+                    "default": false
+                },
+                "no_tag_check": {
+                    "type": "boolean",
+                    "description": "If true, ignore the creation tag guard and allow deletion even without the tag.",
+                    "default": false
+                }
+            },
+            "required": ["source_name"]
+        }
+    }
+]
